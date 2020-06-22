@@ -1,0 +1,86 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build all",
+            "group": "build",
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "Frontend: build",
+                "Backend: build"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "publish all",
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "Frontend: publish",
+                "Backend: publish"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "Frontend: build",
+            "command": "dotnet",
+            "type": "shell",
+            "args": [
+                "build",
+                "${workspaceFolder}/frontend/Frontend.csproj",
+                "--configuration",
+                "Debug",
+                "/property:GenerateFullPaths=true"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "Backend: build",
+            "options": {
+                "cwd": "${workspaceFolder}/backend"
+            },
+            "command": "dotnet",
+            "type": "shell",
+            "args": [
+                "build",
+                "${workspaceFolder}/backend/Backend.csproj",
+                "--configuration",
+                "Debug",
+                "/property:GenerateFullPaths=true"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "Frontend: publish",
+            "options": {
+                "cwd": "${workspaceFolder}/frontend"
+            },
+            "command": "dotnet",
+            "type": "shell",
+            "args": [
+                "publish",
+                "${workspaceFolder}/frontend/Frontend.csproj",
+                "--configuration",
+                "Release",
+                "--output",
+                "${workspaceFolder}/bin/frontend",
+                "/property:GenerateFullPaths=true"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "Backend: publish",
+            "command": "dotnet",
+            "type": "shell",
+            "args": [
+                "publish",
+                "${workspaceFolder}/backend/Backend.csproj",
+                "--configuration",
+                "Release",
+                "--output",
+                "${workspaceFolder}/bin/backend",
+                "/property:GenerateFullPaths=true"
+            ],
+            "problemMatcher": "$msCompile"
+        }  
+    ]
+}

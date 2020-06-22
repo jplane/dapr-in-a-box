@@ -1,0 +1,46 @@
+{
+   // Use IntelliSense to find out which attributes exist for C# debugging
+   // Use hover for the description of the existing attributes
+   // For further information visit https://github.com/OmniSharp/omnisharp-vscode/blob/master/debugger-launchjson.md
+   "version": "0.2.0",
+   "configurations": [
+        {
+            "name": "Launch: Frontend",
+            "type": "coreclr",
+            "request": "launch",
+            "program": "${workspaceFolder}/frontend/bin/Debug/netcoreapp3.1/Frontend.dll",
+            "cwd": "${workspaceFolder}",
+            "stopAtEntry": false,
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development",
+                "ASPNETCORE_URLS": "http://*:5000",
+                "Logging__LogLevel__Default": "Debug",
+                "DAPR_HTTP_PORT": "5001"
+            }
+        },
+        {
+            "name": "Launch: Backend",
+            "type": "coreclr",
+            "request": "launch",
+            "program": "${workspaceFolder}/backend/bin/Debug/netcoreapp3.1/Backend.dll",
+            "cwd": "${workspaceFolder}",
+            "stopAtEntry": false,
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development",
+                "ASPNETCORE_URLS": "http://*:6000",
+                "Logging__LogLevel__Default": "Debug",
+                "DAPR_HTTP_PORT": "6001"
+            }
+        },
+    ],
+    "compounds": [
+        {
+          "name": "Launch Frontend + Backend",
+          "preLaunchTask": "build all",
+          "configurations": [
+            "Launch: Frontend",
+            "Launch: Backend"
+          ]
+        }
+    ]  
+}
