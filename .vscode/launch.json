@@ -11,6 +11,8 @@
             "program": "${workspaceFolder}/frontend/bin/Debug/netcoreapp3.1/Frontend.dll",
             "cwd": "${workspaceFolder}",
             "stopAtEntry": false,
+            "preLaunchTask": "Frontend: daprd start",
+            "postDebugTask": "Daprd stop",
             "env": {
                 "ASPNETCORE_ENVIRONMENT": "Development",
                 "ASPNETCORE_URLS": "http://*:5000",
@@ -25,6 +27,8 @@
             "program": "${workspaceFolder}/backend/bin/Debug/netcoreapp3.1/Backend.dll",
             "cwd": "${workspaceFolder}",
             "stopAtEntry": false,
+            "preLaunchTask": "Backend: daprd start",
+            "postDebugTask": "Daprd stop",
             "env": {
                 "ASPNETCORE_ENVIRONMENT": "Development",
                 "ASPNETCORE_URLS": "http://*:6000",

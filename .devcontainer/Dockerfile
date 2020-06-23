@@ -75,9 +75,10 @@ RUN curl -sSL $DOCKER_SCRIPT_SOURCE -o /tmp/docker-setup.sh \
     && /bin/bash /tmp/docker-setup.sh "${ENABLE_NONROOT_DOCKER}" "${SOURCE_SOCKET}" "${TARGET_SOCKET}" "${USERNAME}" \
     && rm /tmp/docker-setup.sh
 
-# Install Dapr
-RUN wget -q https://raw.githubusercontent.com/dapr/cli/master/install/install.sh -O - | /bin/bash \
-    && dapr init
+# Install Daprd
+COPY ./install-daprd.sh ./tmp
+RUN /bin/bash /tmp/install-daprd.sh \
+    && rm /tmp/install-daprd.sh
 
 # Switch back to dialog for any ad-hoc use of apt-get
 ENV DEBIAN_FRONTEND=dialog

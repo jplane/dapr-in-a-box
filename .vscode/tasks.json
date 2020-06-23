@@ -81,6 +81,81 @@
                 "/property:GenerateFullPaths=true"
             ],
             "problemMatcher": "$msCompile"
-        }  
+        },
+        {
+            "label": "Frontend: daprd start",
+            "command": "daprd",
+            "args": [
+                "-app-id",
+                "frontend",
+                "-app-port",
+                "5000",
+                "-dapr-http-port",
+                "5001",
+                "-dapr-grpc-port",
+                "5002",
+                "-metrics-port",
+                "5003",
+                "-placement-address",
+                "daprdevcontainer_placement:50006",
+                "-components-path",
+                "${workspaceFolder}/.devcontainer/components"
+            ],
+            "isBackground": true,
+            "problemMatcher": {
+                "pattern": [
+                    {
+                      "regexp": ".",
+                      "file": 1,
+                      "location": 2,
+                      "message": 3
+                    }
+                ],
+                "background": {
+                    "beginsPattern": "^.*starting Dapr Runtime.*",
+                    "endsPattern": "^.*waiting on port.*"
+                }
+            }
+        },
+        {
+            "label": "Backend: daprd start",
+            "command": "daprd",
+            "args": [
+                "-app-id",
+                "backend",
+                "-app-port",
+                "6000",
+                "-dapr-http-port",
+                "6001",
+                "-dapr-grpc-port",
+                "6002",
+                "-metrics-port",
+                "6003",
+                "-placement-address",
+                "daprdevcontainer_placement:50006",
+                "-components-path",
+                "${workspaceFolder}/.devcontainer/components"
+            ],
+            "isBackground": true,
+            "problemMatcher": {
+                "pattern": [
+                    {
+                      "regexp": ".",
+                      "file": 1,
+                      "location": 2,
+                      "message": 3
+                    }
+                ],
+                "background": {
+                    "beginsPattern": "^.*starting Dapr Runtime.*",
+                    "endsPattern": "^.*waiting on port.*"
+                }
+            }
+        },
+        {
+            "label": "Daprd stop",
+            "type": "shell",
+            "command":"pkill -f daprd"
+        }
     ]
 }
